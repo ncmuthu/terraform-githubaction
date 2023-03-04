@@ -30,7 +30,7 @@ jobs:
     
     # Authenticate to Azure
     - name: Authenticate Azure
-      env:
+      env: |
         ARM_CLIENT_SECRET : ${{ secrets.CLIENT_SECRET }}
         ARM_CLIENT_ID : ${{ env.CLIENT_ID }}
         ARM_TENANT_ID : ${{ env.TENANT_ID}}
