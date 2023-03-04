@@ -68,15 +68,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    # Install the latest version of Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+    
+    # Authenticate to Azure
+    - name: Authenticate Azure
+      run: |
+        export ARM_CLIENT_ID="ef0c3a6b-62cc-4eaa-8c12-aa3ee81bf003"
+        export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+        export ARM_TENANT_ID="afb205d1-84fd-414f-8a3f-b1ea63fc1486"
+        export ARM_SUBSCRIPTION_ID="0b30185c-d8bd-41fd-8547-bfb43726391e"
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend=true -backend-config="storage_account_name=tfstatestgacc02" -backend-config="container_name=tfstate" -backend-config="key=terraform.tfstate" -backend-config="resource_group_name=tfstate-rg"
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
