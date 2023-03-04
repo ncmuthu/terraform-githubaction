@@ -15,9 +15,9 @@ jobs:
     environment: test
     env:
       ARM_CLIENT_SECRET : ${{ secrets.CLIENT_SECRET }}
-      ARM_CLIENT_ID : $CLIENT_ID
-      ARM_TENANT_ID : $TENANT_ID
-      ARM_SUBSCRIPTION_ID : $SUBSCRIPTION_ID
+      ARM_CLIENT_ID : ${{ vars.CLIENT_ID }}
+      ARM_TENANT_ID : ${{ vars.TENANT_ID }}
+      ARM_SUBSCRIPTION_ID : ${{ vars.SUBSCRIPTION_ID }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
