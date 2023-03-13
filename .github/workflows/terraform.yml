@@ -37,7 +37,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: |
-        cd {{ github.workspace }}/
+        cd {{ github.workspace }}
         pwd
         terraform init -backend=true -backend-config="storage_account_name=${{ vars.TF_BE_STORAGE_ACCOUNT_NAME}}" -backend-config="container_name=${{ vars.TF_BE_CONTAINER_NAME }}" -backend-config="key=${{ vars.TF_BE_KEY }}" -backend-config="resource_group_name=${{ vars.TF_BE_RG_NAME }}"
 
