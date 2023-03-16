@@ -1,3 +1,3 @@
 # terraform-githubaction
 
-## Test
+## Testing
