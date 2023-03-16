@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'terraform-githubaction/*.tf'
+      - '*.tf'
   pull_request:
     branches: [ "main" ]
 
