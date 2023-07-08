@@ -107,3 +107,12 @@ resource "azurerm_key_vault" "myKeyVault" {
     certificate_permissions = ["Get", ]
   }
 }
+
+# Create the namespace for certmanager and application
+resource "helm_release" "namespaces" {
+  name  = "namespaces"
+  chart = "./helmcharts-infra/namespaces"
+  values = [
+    "${file("./helmcharts-infra/namespaces/values.yaml")}"
+  ]
+}
