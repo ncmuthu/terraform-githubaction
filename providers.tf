@@ -32,7 +32,7 @@ data "azurerm_kubernetes_cluster" "aks" {
 }
 
 provider "helm" {
-  debug   = true
+  debug = true
   kubernetes {
     host = data.azurerm_kubernetes_cluster.aks.kube_config[0].host
 
