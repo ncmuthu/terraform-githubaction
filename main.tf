@@ -116,3 +116,28 @@ data "azurerm_client_config" "current" {}
 #    "${file("./helmcharts-infra/namespaces/values.yaml")}"
 #  ]
 #}
+
+data "azurerm_kubernetes_cluster" "k8" {
+  name                = azurerm_kubernetes_cluster.k8s.name
+  resource_group_name = azurerm_kubernetes_cluster.k8s.resource_group_name
+  depends_on = [
+    azurerm_kubernetes_cluster.k8s,
+  ]
+}
+
+# Output
+output "client_certificate" {
+  value     = azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate
+  sensitive = true
+}
+
+output "kube_config" {
+  value     = azurerm_kubernetes_cluster.k8s.kube_config_raw
+  sensitive = true
+}
+
+output "kube_host" {
+  value     = data.azurerm_kubernetes_cluster.k8.kube_config[0].host
+  sensitive = true
+}
+
