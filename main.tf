@@ -92,27 +92,27 @@ output "id" {
 
 data "azurerm_client_config" "current" {}
 
-resource "azurerm_key_vault" "myKeyVault" {
-  name                = "ncmuthutestkv02"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  tenant_id           = data.azurerm_client_config.current.tenant_id
-  sku_name            = "standard"
-
-  access_policy {
-    tenant_id               = data.azurerm_client_config.current.tenant_id
-    object_id               = azurerm_kubernetes_cluster.k8s.key_vault_secrets_provider[0].secret_identity.0.object_id
-    key_permissions         = ["Get", ]
-    secret_permissions      = ["Get", ]
-    certificate_permissions = ["Get", ]
-  }
-}
+#resource "azurerm_key_vault" "myKeyVault" {
+#  name                = "ncmuthutestkv02"
+#  location            = azurerm_resource_group.rg.location
+#  resource_group_name = azurerm_resource_group.rg.name
+#  tenant_id           = data.azurerm_client_config.current.tenant_id
+#  sku_name            = "standard"
+#
+#  access_policy {
+#    tenant_id               = data.azurerm_client_config.current.tenant_id
+#    object_id               = azurerm_kubernetes_cluster.k8s.key_vault_secrets_provider[0].secret_identity.0.object_id
+#    key_permissions         = ["Get", ]
+#    secret_permissions      = ["Get", ]
+#    certificate_permissions = ["Get", ]
+#  }
+#}
 
 # Create the namespace for certmanager and application
-resource "helm_release" "namespaces" {
-  name  = "namespaces"
-  chart = "./helmcharts-infra/namespaces"
-  values = [
-    "${file("./helmcharts-infra/namespaces/values.yaml")}"
-  ]
-}
+#resource "helm_release" "namespaces" {
+#  name  = "namespaces"
+#  chart = "./helmcharts-infra/namespaces"
+#  values = [
+#    "${file("./helmcharts-infra/namespaces/values.yaml")}"
+#  ]
+#}
