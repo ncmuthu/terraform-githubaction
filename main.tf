@@ -109,13 +109,13 @@ data "azurerm_client_config" "current" {}
 #}
 
 # Create the namespace for certmanager and application
-#resource "helm_release" "namespaces" {
-#  name  = "namespaces"
-#  chart = "./helmcharts-infra/namespaces"
-#  values = [
-#    "${file("./helmcharts-infra/namespaces/values.yaml")}"
-#  ]
-#}
+resource "helm_release" "namespaces" {
+  name  = "namespaces"
+  chart = "./helmcharts-infra/namespaces"
+  values = [
+    "${file("./helmcharts-infra/namespaces/values.yaml")}"
+  ]
+}
 
 data "azurerm_kubernetes_cluster" "k8" {
   name                = azurerm_kubernetes_cluster.k8s.name
