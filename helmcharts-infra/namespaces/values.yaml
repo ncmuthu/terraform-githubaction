@@ -1,0 +1,5 @@
+namespace:
+  certmanager:
+    name: certmanager
+  application:
+    name: ucps
