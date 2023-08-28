@@ -117,14 +117,6 @@ data "azurerm_client_config" "current" {}
 #  ]
 #}
 
-data "azurerm_kubernetes_cluster" "k8" {
-  name                = azurerm_kubernetes_cluster.k8s.name
-  resource_group_name = azurerm_kubernetes_cluster.k8s.resource_group_name
-  depends_on = [
-    azurerm_kubernetes_cluster.k8s,
-  ]
-}
-
 # Output
 output "client_certificate" {
   value     = azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate
@@ -137,7 +129,7 @@ output "kube_config" {
 }
 
 output "kube_host" {
-  value     = data.azurerm_kubernetes_cluster.k8.kube_config[0].host
+  value     = data.azurerm_kubernetes_cluster.aks.kube_config[0].host
   sensitive = true
 }
 
